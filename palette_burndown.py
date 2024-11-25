@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import json
 
 # GitHub API Configuration
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = "enter token"
 HEADERS = {
     "Authorization": f"Bearer {GITHUB_TOKEN}",
     "Content-Type": "application/json",
