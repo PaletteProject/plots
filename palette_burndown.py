@@ -2,18 +2,25 @@ import requests
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 import json
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv(verbose=True)
 
 # GitHub API Configuration
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
+ORG = os.getenv('ORG')
+PROJECT_TITLE = os.getenv('PROJECT_TITLE')
+
+
 HEADERS = {
     "Authorization": f"Bearer {GITHUB_TOKEN}",
     "Content-Type": "application/json",
 }
-ORG = "PaletteProject"
-PROJECT_TITLE = "Palette Sprint 4"
 
-START_DATE = datetime(2024, 11, 14)
-END_DATE = datetime(2024, 11, 27)
+START_DATE = datetime(2025, 1, 12)
+END_DATE = datetime(2025, 1, 25)
 
 BURNDOWN_IMAGE_FILE_NAME = "palette_burndown.png"
 
