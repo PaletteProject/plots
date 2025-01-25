@@ -13,14 +13,22 @@ GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 ORG = os.getenv('ORG')
 PROJECT_TITLE = os.getenv('PROJECT_TITLE')
 
+YEAR_START = int(os.getenv('YEAR_START', 2025))
+YEAR_END = int(os.getenv('YEAR_END', 2025))
+
+MONTH_START = int(os.getenv('MONTH_START', 1))
+MONTH_END = int(os.getenv('MONTH_END', 1))
+DAY_START = int(os.getenv('DAY_START', 1))
+DAY_END = int(os.getenv('DAY_END', 31))
+
 
 HEADERS = {
     "Authorization": f"Bearer {GITHUB_TOKEN}",
     "Content-Type": "application/json",
 }
 
-START_DATE = datetime(2025, 1, 12)
-END_DATE = datetime(2025, 1, 25)
+START_DATE = datetime(YEAR_START, MONTH_START, DAY_START)
+END_DATE = datetime(YEAR_END, MONTH_END, DAY_END)
 
 BURNDOWN_IMAGE_FILE_NAME = "palette_burndown.png"
 
