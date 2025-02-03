@@ -123,7 +123,7 @@ def fetch_project_items(org, project_title):
     return all_items
 
 
-def process_items(items, milestone_name):
+def process_items(items):
     """Process project items to extract useful fields like Estimate and closure dates."""
     processed_items = []
     for item in items:
@@ -212,7 +212,7 @@ def generate_burndown_chart(closed_per_day, start_date, end_date, total_value, y
 def main():
     # Fetch and process project items
     items = fetch_project_items(ORG, PROJECT_TITLE)
-    processed_items = process_items(items, "Sprint 4")
+    processed_items = process_items(items)
 
     # Task count burndown
     total_tasks = len(processed_items)
@@ -223,11 +223,11 @@ def main():
 
     # Size estimate burndown
     total_estimate = sum(
-        float(item["fields"].get("Estimate", 0)) for item in processed_items if "Estimate" in item["fields"]
+        float(item["fields"].get("Points", 0)) for item in processed_items if "Points" in item["fields"]
     )
-    closed_estimates_per_day = calculate_by_date(processed_items, "Estimate")
-    print(f"Total Estimate: {total_estimate}, Closed Estimates Per Day: {closed_estimates_per_day}")
-    generate_burndown_chart(closed_estimates_per_day, START_DATE, END_DATE, total_estimate, "Remaining Estimate",
+    closed_estimates_per_day = calculate_by_date(processed_items, "Points")
+    print(f"Total Points: {total_estimate}, Closed Points Per Day: {closed_estimates_per_day}")
+    generate_burndown_chart(closed_estimates_per_day, START_DATE, END_DATE, total_estimate, "Remaining Points",
                             "burndown_estimates.png")
 
 
